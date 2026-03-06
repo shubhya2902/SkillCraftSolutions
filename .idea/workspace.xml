@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="069920fb-ebe9-46df-9cb4-e384de41798d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/skillcraft.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/skillcraft.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/js/owl-carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/js/owl-carousel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/homepage_1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/homepage_2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/services.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/services.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
