@@ -2719,7 +2719,7 @@
 	 */
 	Autoplay.Defaults = {
 		autoplay: false,
-		autoplayTimeout: 5000,
+		autoplayTimeout: 1000,
 		autoplayHoverPause: false,
 		autoplaySpeed: false
 	};
