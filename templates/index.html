@@ -4,691 +4,720 @@
 
 
 {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="flash-popup {{ category }}">
-        <span class="popup-close" onclick="this.parentElement.style.display='none';">&times;</span>
-        {{ message }}
-      </div>
-      <script>
-        // Auto-hide popup after 4 seconds
-        setTimeout(() => {
-          document.querySelector('.flash-popup').style.display = 'none';
-        }, 4000);
-      </script>
-    {% endfor %}
-  {% endif %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="flash-popup {{ category }}">
+    <span class="popup-close" onclick="this.parentElement.style.display='none';">&times;</span>
+    {{ message }}
+</div>
+<script>
+    // Auto-hide popup after 4 seconds
+    setTimeout(() => {
+      document.querySelector('.flash-popup').style.display = 'none';
+    }, 4000);
+</script>
+{% endfor %}
+{% endif %}
 {% endwith %}
 
 
-  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+<div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-lg-6 align-self-center">
-              <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="row">
-                  <div class="col-lg-12">
+                    <div class="col-lg-6 align-self-center">
+                        <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s"
+                             data-wow-delay="1s">
+                            <div class="row">
+                                <div class="col-lg-12">
 
-                    <h6>End-to-End Solutions for Your <span style="color:black;">Final Year Project</span> </h6>
-                    <h2>🎓 Crafting Skills Creating Futures</h2>
-                    <p>Get your final year projects with code, reports, live demo, and personal guidance — all under one roof!</p>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="border-first-button scroll-to-section">
-                      <a href="#free-quote">Free Quote</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-                <img src="/static/assets/images/skill_home.jpg" alt="skill_home.jpg" height="100%">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div id="about" class="about section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="about-left-image  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
-                <img src="/static/assets/images/about_us2.jpg" alt="about_us2.jpg" height="100%">
-              </div>
-            </div>
-            <div class="col-lg-6 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
-              <div class="about-right-content">
-                <div class="section-heading">
-                  <h6>About Us</h6>
-                  <h4> What is <em>SkillCraft Solutions</em>❓</h4>
-                  <div class="line-dec"></div>
-                </div>
-                <p> <strong style="color:black;"><b>SkillCraft Solutions</b></strong> is a project development startup with over 4 years of experience, focused on helping final year students complete their <strong style="color:black;"><b>academic projects</b></strong> with confidence. We provide <strong style="color:black;"><b>end-to-end solutions</b></strong> including project code, detailed reports, live demos, and personal guidance — tailored for students in Engineering, MCA, MCS, BCA, and related fields. Our mission is to make project submission stress-free, professional, and impactful.                </p>
-                <div class="section-heading">
-                  <h6>💡 Our Expertise Distribution</h6>
-                  <div class="line-dec"></div>
-                </div>
-                <p>
-
-                </p>
-                <div class="row">
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="skill-item first-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
-                      <div class="progress" data-percentage="90">
-                        <span class="progress-left">
-                          <span class="progress-bar"></span>
-                        </span>
-                        <span class="progress-right">
-                          <span class="progress-bar"></span>
-                        </span>
-                        <div class="progress-value">
-                          <div>
-                            90%<br>
-                            <span>🔧 Project Development</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="skill-item second-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
-                      <div class="progress" data-percentage="80">
-                        <span class="progress-left">
-                          <span class="progress-bar"></span>
-                        </span>
-                        <span class="progress-right">
-                          <span class="progress-bar"></span>
-                        </span>
-                        <div class="progress-value">
-                          <div>
-                            80%<br>
-                            <span>📄 Report & Documents</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-sm-4">
-                    <div class="skill-item third-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
-                      <div class="progress" data-percentage="90">
-                        <span class="progress-left">
-                          <span class="progress-bar"></span>
-                        </span>
-                        <span class="progress-right">
-                          <span class="progress-bar"></span>
-                        </span>
-                        <div class="progress-value">
-                          <div>
-                            90%<br>
-                            <span>🧑‍🏫 Personal Guidance</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="services" class="services section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h6>Our Services</h6>
-            <h4>Turn Your Final Year Project Into a <em>Masterpiece</em></h4>
-
-            <div class="line-dec"></div>
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <div class="naccs">
-            <div class="grid">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="menu">
-                    <div class="first-thumb active">
-                      <div class="thumb">
-                        <span class="icon"><img src="/static/assets/images/service_icon_01.png" alt=""></span>
-                        Projects
-                      </div>
-                    </div>
-                    <div>
-                      <div class="thumb">
-                        <span class="icon"><img src="/static/assets/images/service_icon_02.png" alt=""></span>
-                        Documentation
-                      </div>
-                    </div>
-                    <div>
-                      <div class="thumb">
-                        <span class="icon"><img src="/static/assets/images/service_icon_03.png" alt=""></span>
-                        Live Demo
-                      </div>
-                    </div>
-                    <div>
-                      <div class="thumb">
-                        <span class="icon"><img src="/static/assets/images/service_icon_04.png" alt=""></span>
-                        Personal Guidance
-                      </div>
-                    </div>
-
-                    <div>
-                      <div class="thumb">
-                        <span class="icon"><img src="/static/assets/images/service_icon_06.png" alt=""></span>
-                        Paper Publication
-                      </div>
-                    </div>
-
-                    <div class="last-thumb">
-                      <div class="thumb">
-                        <span class="icon"><img src="/static/assets/images/service_icon_05.png" alt=""></span>
-                        Internship
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <ul class="nacc">
-                    <li class="active">
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>📂 Ready-Made & Custom Projects</h4>
-                                  <p>We provide both ready-to-deploy and fully customized projects tailored to your academic requirements and technical interests. Whether you're looking for a quick project in Web Development, Machine Learning or Data Science — we deliver it.</p>
-                                <div class="ticks-list"><span><i class="fa fa-check"></i> 100% working source code</span> <span><i class="fa fa-check"></i> Tech guidance</span>
-                                  <span><i class="fa fa-check"></i> Clean and structured Code</span><span><i class="fa fa-check"></i> Setup instructions</span>
+                                    <h6>End-to-End Solutions for Your <span
+                                            style="color:black;">Final Year Project</span></h6>
+                                    <h2>🎓 Crafting Skills Creating Futures</h2>
+                                    <p>Get your final year projects with code, reports, live demo, and personal guidance
+                                        — all under one roof!</p>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="border-first-button scroll-to-section">
+                                        <a href="#free-quote">Free Quote</a>
                                     </div>
-                                <p>Our custom development ensures your project is unique, plagiarism-free, and aligns perfectly with your syllabus and department expectations.</p>
-                              </div>
+                                </div>
                             </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="/static/assets/images/service_project.jpg" alt="">
-                              </div>
-                            </div>
-                          </div>
                         </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>📝 Report & Documentation</h4>
-                                <p>We know how important proper documentation is for college submissions. That's why we provide:</p>
-                                <div class="ticks-list"><span><i class="fa fa-check"></i> Complete Project Report (typically 40-80 pages)</span> <span><i class="fa fa-check"></i> Abstract / Summary</span> <span><i class="fa fa-check"></i> IEEE-format paper (on request)</span>
-                                  <span><i class="fa fa-check"></i> PPTs for seminars or final presentation</span> <span><i class="fa fa-check"></i> Flowcharts, UML Diagrams, and Screenshots</span></div>
-                                <p>All reports are prepared following your university format, ensuring you're ready for internal and external evaluations. You get editable formats (Word, PPT) so you can make quick updates if needed.</p>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="/static/assets/images/service_documentation2.jpg" alt="">
-                              </div>
-                            </div>
-                          </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <img src="/static/assets/images/skill_home.jpg" alt="skill_home.jpg" height="100%">
                         </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>🎥 Live Demo </h4>
-                                <p>We don’t just give you code — we make sure it runs! Our team conducts a live demo session (in person or via screen share) to:</p>
-                                <div class="ticks-list"><span><i class="fa fa-check"></i> Show the working of the entire project</span> <span><i class="fa fa-check"></i> Explain functionality in simple terms</span> </div>
-                                <p>This ensures your project is accessible anywhere, anytime.</p>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="/static/assets/images/service_demo.jpg" alt="">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>👨‍🏫 Personal Guidance</h4>
-                                <p>Unlike others who just deliver and disappear, we guide you personally from start to finish:</p>
-                                <div class="ticks-list"><span><i class="fa fa-check"></i> Help in choosing the right project domain</span> <span><i class="fa fa-check"></i> Explain code and logic in detail</span></div>
-                                <p>Whether you're tech-savvy or not, our guidance ensures you understand your project fully — boosting your confidence and performance.</p>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="/static/assets/images/service_personal_guidance.jpg" alt="">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>📚 Paper Publication</h4>
-                                <p>Want to take your project to the next level? We help you convert your final year project into a research paper and assist with its publication in reputed journals or conferences.</p>
-                                <div class="ticks-list"><span><i class="fa fa-check"></i> Converting your project into IEEE/UGC-format research paper</span> <span><i class="fa fa-check"></i> Plagiarism checking and reduction</span> <span><i class="fa fa-check"></i> End-to-end submission and minor revision support</span>
-                                  </div>
-                                <p>Whether you’re planning for higher studies, applying for internships, or just want to make your resume stand out, a published paper adds tremendous value to your academic profile.</p>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="/static/assets/images/service_paper_publication.jpg" alt="">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div>
-                        <div class="thumb">
-                          <div class="row">
-                            <div class="col-lg-6 align-self-center">
-                              <div class="left-text">
-                                <h4>🎓 Internship & Experience Letter</h4>
-                                <p>Want to show real-world exposure on your resume? We offer an internship & certified experience letter under the name of SkillCraft Solutions (optional). It:</p>
-                                <div class="ticks-list"><span><i class="fa fa-check"></i> Highlights your role (e.g., Backend Developer, ML Intern, Project Trainee)</span> <span><i class="fa fa-check"></i> Shows duration and technologies used</span> <span><i class="fa fa-check"></i> Adds credibility during placements or job interviews</span>
-                                  </div>
-                                <p>This is especially helpful for students applying to internships, higher studies, or jobs where project experience is considered valuable.</p>
-                              </div>
-                            </div>
-                            <div class="col-lg-6 align-self-center">
-                              <div class="right-image">
-                                <img src="/static/assets/images/service_offer_letter.jpg" alt="">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 
-  <div id="free-quote" class="free-quote">
+<div id="about" class="about section">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-4 offset-lg-4">
-          <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-            <h6>Start Your Final Year Project Journey</h6>
-            <h4>Let’s Build Something Extraordinary Together</h4>
-            <div class="line-dec"></div>
-          </div>
-        </div>
-        <div class="col-lg-8 offset-lg-2  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
-          <form id="search" method="POST" action="/inquire-basic">
-            <div class="row">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="about-left-image  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <img src="/static/assets/images/about_us2.jpg" alt="about_us2.jpg" height="100%">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 align-self-center  wow fadeInRight" data-wow-duration="1s"
+                         data-wow-delay="0.5s">
+                        <div class="about-right-content">
+                            <div class="section-heading">
+                                <h6>About Us</h6>
+                                <h4> What is <em>SkillCraft Solutions</em>❓</h4>
+                                <div class="line-dec"></div>
+                            </div>
+                            <p><strong style="color:black;"><b>SkillCraft Solutions</b></strong> is a project
+                                development startup with over 4 years of experience, focused on helping final year
+                                students complete their <strong style="color:black;"><b>academic projects</b></strong>
+                                with confidence. We provide <strong style="color:black;"><b>end-to-end
+                                    solutions</b></strong> including project code, detailed reports, live demos, and
+                                personal guidance — tailored for students in Engineering, MCA, MCS, BCA, and related
+                                fields. Our mission is to make project submission stress-free, professional, and
+                                impactful. </p>
+                            <div class="section-heading">
+                                <h6>💡 Our Expertise Distribution</h6>
+                                <div class="line-dec"></div>
+                            </div>
+                            <p>
 
-              <div class="col-lg-4 col-sm-4">
-                <fieldset>
-                  <input type="text" name="name" class="text" placeholder="Name..." autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-4 col-sm-4">
-                <fieldset>
-                  <input type="email" name="email" class="email" placeholder="Email Address..." autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-4 col-sm-4">
-                <fieldset>
-                  <button type="submit" class="main-button">Inquire Now</button>
-                </fieldset>
-              </div>
+                            </p>
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4">
+                                    <div class="skill-item first-skill-item wow fadeIn" data-wow-duration="1s"
+                                         data-wow-delay="0s">
+                                        <div class="progress" data-percentage="90">
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                                            <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                                            <div class="progress-value">
+                                                <div>
+                                                    90%<br>
+                                                    <span>🔧 Project Development</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-sm-4">
+                                    <div class="skill-item second-skill-item wow fadeIn" data-wow-duration="1s"
+                                         data-wow-delay="0s">
+                                        <div class="progress" data-percentage="80">
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                                            <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                                            <div class="progress-value">
+                                                <div>
+                                                    80%<br>
+                                                    <span>📄 Report & Documents</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-sm-4">
+                                    <div class="skill-item third-skill-item wow fadeIn" data-wow-duration="1s"
+                                         data-wow-delay="0s">
+                                        <div class="progress" data-percentage="90">
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                                            <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                                            <div class="progress-value">
+                                                <div>
+                                                    90%<br>
+                                                    <span>🧑‍🏫 Personal Guidance</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
-
-  <div id="portfolio" class="our-portfolio section">
+<div id="services" class="services section">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-5">
-          <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
-            <h6>Tech</h6>
-            <h4><em>Technologies</em> That We Use</h4>
-            <div class="line-dec"></div>
-          </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <h6>Our Services</h6>
+                    <h4>Turn Your Final Year Project Into a <em>Masterpiece</em></h4>
+
+                    <div class="line-dec"></div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="naccs">
+                    <div class="grid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="menu">
+                                    <div class="first-thumb active">
+                                        <div class="thumb">
+                                            <span class="icon"><img src="/static/assets/images/service_icon_01.png"
+                                                                    alt=""></span>
+                                            Projects
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="thumb">
+                                            <span class="icon"><img src="/static/assets/images/service_icon_02.png"
+                                                                    alt=""></span>
+                                            Documentation
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="thumb">
+                                            <span class="icon"><img src="/static/assets/images/service_icon_03.png"
+                                                                    alt=""></span>
+                                            Live Demo
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="thumb">
+                                            <span class="icon"><img src="/static/assets/images/service_icon_04.png"
+                                                                    alt=""></span>
+                                            Guidance
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="thumb">
+                                            <span class="icon"><img src="/static/assets/images/service_icon_06.png"
+                                                                    alt=""></span>
+                                            Paper Publication
+                                        </div>
+                                    </div>
+
+                                    <div class="last-thumb">
+                                        <div class="thumb">
+                                            <span class="icon"><img src="/static/assets/images/service_icon_05.png"
+                                                                    alt=""></span>
+                                            Internship
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <ul class="nacc">
+                                    <li class="active">
+                                        <div>
+                                            <div class="thumb">
+                                                <div class="row">
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="left-text">
+                                                            <h4>📂 Ready-Made & Custom Projects</h4>
+                                                            <p>We provide both ready-to-deploy and fully customized
+                                                                projects tailored to your academic requirements and
+                                                                technical interests. Whether you're looking for a quick
+                                                                project in Web Development, Machine Learning or Data
+                                                                Science — we deliver it.</p>
+                                                            <div class="ticks-list"><span><i class="fa fa-check"></i> 100% working source code</span>
+                                                                <span><i class="fa fa-check"></i> Tech guidance</span>
+                                                                <span><i class="fa fa-check"></i> Clean and structured Code</span><span><i
+                                                                        class="fa fa-check"></i> Setup instructions</span>
+                                                            </div>
+                                                            <p>Our custom development ensures your project is unique,
+                                                                plagiarism-free, and aligns perfectly with your syllabus
+                                                                and department expectations.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="right-image">
+                                                            <img src="/static/assets/images/service_project.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="thumb">
+                                                <div class="row">
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="left-text">
+                                                            <h4>📝 Report & Documentation</h4>
+                                                            <p>We know how important proper documentation is for college
+                                                                submissions. That's why we provide:</p>
+                                                            <div class="ticks-list"><span><i class="fa fa-check"></i> Complete Project Report (typically 40-80 pages)</span>
+                                                                <span><i
+                                                                        class="fa fa-check"></i> Abstract / Summary</span>
+                                                                <span><i class="fa fa-check"></i> IEEE-format paper (on request)</span>
+                                                                <span><i class="fa fa-check"></i> PPTs for seminars or final presentation</span>
+                                                                <span><i class="fa fa-check"></i> Flowcharts, UML Diagrams, and Screenshots</span>
+                                                            </div>
+                                                            <p>All reports are prepared following your university
+                                                                format, ensuring you're ready for internal and external
+                                                                evaluations. You get editable formats (Word, PPT) so you
+                                                                can make quick updates if needed.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="right-image">
+                                                            <img src="/static/assets/images/service_documentation2.jpg"
+                                                                 alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="thumb">
+                                                <div class="row">
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="left-text">
+                                                            <h4>🎥 Live Demo </h4>
+                                                            <p>We don’t just give you code — we make sure it runs! Our
+                                                                team conducts a live demo session (in person or via
+                                                                screen share) to:</p>
+                                                            <div class="ticks-list"><span><i class="fa fa-check"></i> Show the working of the entire project</span>
+                                                                <span><i class="fa fa-check"></i> Explain functionality in simple terms</span>
+                                                            </div>
+                                                            <p>This ensures your project is accessible anywhere,
+                                                                anytime.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="right-image">
+                                                            <img src="/static/assets/images/service_demo.jpg" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="thumb">
+                                                <div class="row">
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="left-text">
+                                                            <h4>👨‍🏫 Personal Guidance</h4>
+                                                            <p>Unlike others who just deliver and disappear, we guide
+                                                                you personally from start to finish:</p>
+                                                            <div class="ticks-list"><span><i class="fa fa-check"></i> Help in choosing the right project domain</span>
+                                                                <span><i class="fa fa-check"></i> Explain code and logic in detail</span>
+                                                            </div>
+                                                            <p>Whether you're tech-savvy or not, our guidance ensures
+                                                                you understand your project fully — boosting your
+                                                                confidence and performance.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="right-image">
+                                                            <img src="/static/assets/images/service_personal_guidance.jpg"
+                                                                 alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="thumb">
+                                                <div class="row">
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="left-text">
+                                                            <h4>📚 Paper Publication</h4>
+                                                            <p>Want to take your project to the next level? We help you
+                                                                convert your final year project into a research paper
+                                                                and assist with its publication in reputed journals or
+                                                                conferences.</p>
+                                                            <div class="ticks-list"><span><i class="fa fa-check"></i> Converting your project into IEEE/UGC-format research paper</span>
+                                                                <span><i class="fa fa-check"></i> Plagiarism checking and reduction</span>
+                                                                <span><i class="fa fa-check"></i> End-to-end submission and minor revision support</span>
+                                                            </div>
+                                                            <p>Whether you’re planning for higher studies, applying for
+                                                                internships, or just want to make your resume stand out,
+                                                                a published paper adds tremendous value to your academic
+                                                                profile.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="right-image">
+                                                            <img src="/static/assets/images/service_paper_publication.jpg"
+                                                                 alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <div class="thumb">
+                                                <div class="row">
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="left-text">
+                                                            <h4>🎓 Internship & Experience Letter</h4>
+                                                            <p>Want to show real-world exposure on your resume? We offer
+                                                                an internship & certified experience letter under the
+                                                                name of SkillCraft Solutions (optional). It:</p>
+                                                            <div class="ticks-list"><span><i class="fa fa-check"></i> Highlights your role (e.g., Backend Developer, ML Intern, Project Trainee)</span>
+                                                                <span><i class="fa fa-check"></i> Shows duration and technologies used</span>
+                                                                <span><i class="fa fa-check"></i> Adds credibility during placements or job interviews</span>
+                                                            </div>
+                                                            <p>This is especially helpful for students applying to
+                                                                internships, higher studies, or jobs where project
+                                                                experience is considered valuable.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 align-self-center">
+                                                        <div class="right-image">
+                                                            <img src="/static/assets/images/service_offer_letter.jpg"
+                                                                 alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
+</div>
+
+
+<div id="free-quote" class="free-quote">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4">
+                <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+                    <h6>Start Your Final Year Project Journey</h6>
+                    <h4>Let’s Build Something Extraordinary Together</h4>
+                    <div class="line-dec"></div>
+                </div>
+            </div>
+            <div class="col-lg-8 offset-lg-2  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
+                <form id="search" method="POST" action="/inquire-basic">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-sm-4">
+                            <fieldset>
+                                <input type="text" name="name" class="text" placeholder="Name..." autocomplete="on"
+                                       required>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <fieldset>
+                                <input type="email" name="email" class="email" placeholder="Email Address..."
+                                       autocomplete="on" required>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-4 col-sm-4">
+                            <fieldset>
+                                <button type="submit" class="main-button">Inquire Now</button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="portfolio" class="our-portfolio section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+                    <h6>Tech</h6>
+                    <h4><em>Technologies</em> That We Use</h4>
+                    <div class="line-dec"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
     <div class="container-fluid wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="loop owl-carousel">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="loop owl-carousel">
 
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="/static/assets/images/tech_image_python.png" alt="Python" height="170">
+                    <div class="item">
+                        <a href="#">
+                            <div class="portfolio-item">
+                                <div class="thumb">
+                                    <img src="/static/assets/images/tech_image_python.png" alt="Python" height="170">
+                                </div>
+                                <div class="down-content">
+                                    <h4>🐍 Python</h4>
+                                    <span>Core language for logic, scripting, ML & automation</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="#">
+                            <div class="portfolio-item">
+                                <div class="thumb">
+                                    <img src="/static/assets/images/tech_image_html_css.jpeg" alt="HTML & CSS"
+                                         height="170">
+                                </div>
+                                <div class="down-content">
+                                    <h4>🌐 HTML & CSS</h4>
+                                    <span>Structure and styling for web projects</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="#">
+                            <div class="portfolio-item">
+                                <div class="thumb">
+                                    <img src="/static/assets/images/tech_image_javascript_bootstrap.jpeg"
+                                         alt="Javascript & Bootstrap" height="170">
+                                </div>
+                                <div class="down-content">
+                                    <h4>⚙️ JS & Bootstrap</h4>
+                                    <span>Interactive and responsive UI development</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="#">
+                            <div class="portfolio-item">
+                                <div class="thumb">
+                                    <img src="/static/assets/images/tech_image_django_flask.jpeg" alt="Django & Flask"
+                                         height="170">
+                                </div>
+                                <div class="down-content">
+                                    <h4>🧩 Django & Flask</h4>
+                                    <span>Backend frameworks for web application development</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="#">
+                            <div class="portfolio-item">
+                                <div class="thumb">
+                                    <img src="/static/assets/images/tech_image_ml.jpeg" alt="Machine Learning"
+                                         height="170">
+                                </div>
+                                <div class="down-content">
+                                    <h4>🤖 Machine Learning</h4>
+                                    <span>Data-driven solutions using Scikit-learn, Pandas, NumPy</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="#">
+                            <div class="portfolio-item">
+                                <div class="thumb">
+                                    <img src="/static/assets/images/tech_image_dl.jpeg" alt="Deep Learning"
+                                         height="170">
+                                </div>
+                                <div class="down-content">
+                                    <h4>🧠 Deep Learning</h4>
+                                    <span>Advanced models using TensorFlow, Keras, OpenCV</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="#">
+                            <div class="portfolio-item">
+                                <div class="thumb">
+                                    <img src="/static/assets/images/tech_image_mysql.jpeg" alt="Mysql" height="170">
+                                </div>
+                                <div class="down-content">
+                                    <h4>🗃️ MySQL</h4>
+                                    <span>Relational database for structured data management</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="#">
+                            <div class="portfolio-item">
+                                <div class="thumb">
+                                    <img src="/static/assets/images/tech_image_sqllite.jpeg" alt="SqlLite" height="170">
+                                </div>
+                                <div class="down-content">
+                                    <h4>📁 SQLite3</h4>
+                                    <span>Lightweight embedded database for standalone projects</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="#">
+                            <div class="portfolio-item">
+                                <div class="thumb">
+                                    <img src="/static/assets/images/tech_image_raspberry.jpg" alt="Raspberry Pi"
+                                         height="170">
+                                </div>
+                                <div class="down-content">
+                                    <h4>🍓 Raspberry Pi</h4>
+                                    <span>IoT, robotics, and embedded AI applications</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="item">
+                        <a href="#">
+                            <div class="portfolio-item">
+                                <div class="thumb">
+                                    <img src="/static/assets/images/tech_image_esp32.jpg" alt="ESP32" height="170">
+                                </div>
+                                <div class="down-content">
+                                    <h4>📡 ESP32</h4>
+                                    <span>Powerful microcontroller for IoT and smart device development</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
                 </div>
-                <div class="down-content">
-                  <h4>🐍 Python</h4>
-                  <span>Core language for logic, scripting, ML & automation</span>
-                </div>
-              </div>
-              </a>
             </div>
-
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="/static/assets/images/tech_image_html_css.jpeg" alt="HTML & CSS" height="170">
-                </div>
-                <div class="down-content">
-                  <h4>🌐 HTML & CSS</h4>
-                  <span>Structure and styling for web projects</span>
-                </div>
-              </div>
-              </a>
-            </div>
-
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="/static/assets/images/tech_image_javascript_bootstrap.jpeg" alt="Javascript & Bootstrap" height="170">
-                </div>
-                <div class="down-content">
-                  <h4>⚙️ JavaScript & Bootstrap</h4>
-                  <span>Interactive and responsive UI development</span>
-                </div>
-              </div>
-              </a>
-            </div>
-
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="/static/assets/images/tech_image_django_flask.jpeg" alt="Django & Flask" height="170">
-                </div>
-                <div class="down-content">
-                  <h4>🧩 Django & Flask</h4>
-                  <span>Backend frameworks for web application development</span>
-                </div>
-              </div>
-              </a>
-            </div>
-
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="/static/assets/images/tech_image_ml.jpeg" alt="Machine Learning" height="170">
-                </div>
-                <div class="down-content">
-                  <h4>🤖 Machine Learning</h4>
-                  <span>Data-driven solutions using Scikit-learn, Pandas, NumPy</span>
-                </div>
-              </div>
-              </a>
-            </div>
-
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="/static/assets/images/tech_image_dl.jpeg" alt="Deep Learning" height="170">
-                </div>
-                <div class="down-content">
-                  <h4>🧠 Deep Learning</h4>
-                  <span>Advanced models using TensorFlow, Keras, OpenCV</span>
-                </div>
-              </div>
-              </a>
-            </div>
-
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="/static/assets/images/tech_image_mysql.jpeg" alt="Mysql" height="170">
-                </div>
-                <div class="down-content">
-                  <h4>🗃️ MySQL</h4>
-                  <span>Relational database for structured data management</span>
-                </div>
-              </div>
-              </a>
-            </div>
-
-            <div class="item">
-              <a href="#">
-                <div class="portfolio-item">
-                <div class="thumb">
-                  <img src="/static/assets/images/tech_image_sqllite.jpeg" alt="SqlLite" height="170">
-                </div>
-                <div class="down-content">
-                  <h4>📁 SQLite3</h4>
-                  <span>Lightweight embedded database for standalone projects</span>
-                </div>
-              </div>
-              </a>
-            </div>
-
-            <div class="item">
-  <a href="#">
-    <div class="portfolio-item">
-      <div class="thumb">
-        <img src="/static/assets/images/tech_image_raspberry.jpg" alt="Raspberry Pi" height="170">
-      </div>
-      <div class="down-content">
-        <h4>🍓 Raspberry Pi</h4>
-        <span>IoT, robotics, and embedded AI applications</span>
-      </div>
-    </div>
-  </a>
-</div>
-
-            <div class="item">
-  <a href="#">
-    <div class="portfolio-item">
-      <div class="thumb">
-        <img src="/static/assets/images/tech_image_esp32.jpg" alt="ESP32" height="170">
-      </div>
-      <div class="down-content">
-        <h4>📡 ESP32</h4>
-        <span>Powerful microcontroller for IoT and smart device development</span>
-      </div>
-    </div>
-  </a>
-</div>
-
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 
-  <div id="contact" class="contact-us section" style="margin-top:35px;">
+<div id="contact" class="contact-us section">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-6 offset-lg-3">
-          <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
-            <h6>Contact Us</h6>
-            <h4>Get In Touch With Us <em>Now</em></h4>
-            <div class="line-dec"></div>
-          </div>
-        </div>
-        <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-          <form id="contact" method="POST" action="/inquire-full">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="contact-dec">
-                  <img src="/static/assets/images/contact-dec-v3.png" alt="">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <h6>Contact Us</h6>
+                    <h4>Get In Touch With Us <em>Now</em></h4>
+                    <div class="line-dec"></div>
                 </div>
-              </div>
-              <div class="col-lg-5">
-                <div id="map">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30270.671004208485!2d73.7849181608534!3d18.491182558248525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfb732af849d%3A0xd4078b48b3fe44f0!2sKothrud%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1751007449856!5m2!1sen!2sin" width="100%" height="636px" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-
-                </div>
-              </div>
-              <div class="col-lg-7">
-                <div class="fill-form">
-                  <div class="row">
-
-                    <div class="col-lg-4">
-                      <div class="info-post">
-                        <div class="icon">
-                          <img src="/static/assets/images/phone-icon.png" alt="">
-                          <a href="tel:9158698218"><br>9158698218</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="info-post">
-                        <div class="icon">
-                          <img src="/static/assets/images/email_icon.png" alt="">
-                          <a href="mailto:skillcrafttsolutions@gmail.com">skillcrafttsolutions-<br>@gmail.com</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="info-post">
-                        <div class="icon">
-                          <img src="/static/assets/images/location-icon.png" alt="">
-                          <a>SkillCraft Solutions, Kothrud, Pune.</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-lg-2">
-                      <div class="info-post">
-                        <div class="icon">
-                          <i class="fa fa-linkedin"></i>
-                          <a href="tel:9158698218" ></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-2">
-                      <div class="info-post">
-                        <div class="icon">
-                          <i class="fa fa-facebook"></i>
-                          <a href="tel:9158698218" ></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-2">
-                      <div class="info-post">
-                        <div class="icon">
-                          <i class="fa fa-instagram"></i>
-                          <a href="mailto:skillcrafttsolutions@gmail.com"></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-2">
-                      <div class="info-post">
-                        <div class="icon">
-                          <i class="fa fa-whatsapp"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-2">
-                      <div class="info-post">
-                        <div class="icon">
-                          <i class="fa fa-youtube"></i>
-                          <a href="tel:9158698218"></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-2">
-                      <div class="info-post">
-                        <div class="icon">
-                          <i class="fa fa-pin"></i>
-                          <a href="tel:9158698218"></a>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <input type="text" name="name" id="name" placeholder="Name" autocomplete="on" required>
-                      </fieldset>
-
-                      <fieldset>
-                        <input type="text" name="number" id="number" placeholder="Number" maxlength="10" pattern="\d{10}" required>
-                      </fieldset>
-
-                      <fieldset>
-                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required="">
-                      </fieldset>
-
-                      <fieldset>
-                        <input type="text" name="subject" id="subject" placeholder="Subject" autocomplete="on">
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <textarea name="message" type="text" class="form-control" id="message" placeholder="Message" required=""></textarea>
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-12">
-                      <fieldset>
-                        <button type="submit" id="form-submit" class="main-button ">Send Message Now</button>
-                      </fieldset>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+            <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
+                <form id="contact" method="POST" action="/inquire-full">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="contact-dec">
+                                <img src="/static/assets/images/contact-dec-v3.png" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div id="map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30270.671004208485!2d73.7849181608534!3d18.491182558248525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfb732af849d%3A0xd4078b48b3fe44f0!2sKothrud%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1751007449856!5m2!1sen!2sin"
+                                        width="100%" height="636px" frameborder="0" style="border:0"
+                                        allowfullscreen></iframe>
 
+
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="fill-form">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="info-post">
+                                            <div class="icon">
+                                                <img src="/static/assets/images/phone-icon.png" alt="">
+                                                <a href="tel:9158698218"><br>9158698218</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-post">
+                                            <div class="icon">
+                                                <img src="/static/assets/images/email_icon.png" alt="">
+                                                <a href="mailto:skillcrafttsolutions@gmail.com">skillcrafttsolutions-<br>@gmail.com</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-post">
+                                            <div class="icon">
+                                                <img src="/static/assets/images/location-icon.png" alt="">
+                                                <a>SkillCraft Solutions, Kothrud, Pune.</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <fieldset>
+                                            <input type="text" name="name" id="name" placeholder="Name"
+                                                   autocomplete="on" required>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <input type="text" name="number" id="number" placeholder="Number"
+                                                   maxlength="10" pattern="\d{10}" required>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*"
+                                                   placeholder="Your Email" required="">
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <input type="text" name="subject" id="subject" placeholder="Subject"
+                                                   autocomplete="on">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <fieldset>
+                                            <textarea name="message" class="form-control" id="message"
+                                                      placeholder="Message" required=""></textarea>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <fieldset>
+                                            <button type="submit" id="form-submit" class="main-button ">Send Message
+                                                Now
+                                            </button>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}
