@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'SkillCraft@2025'
@@ -37,6 +38,7 @@ class Enquiry(db.Model):
     number = db.Column(db.String(11), nullable=True)
     subject = db.Column(db.String(100), nullable=True)
     message = db.Column(db.Text, nullable=True)
+    date = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 # Routes
@@ -79,11 +81,11 @@ def send_enquiry_email(subject, content):
 
         msg.attach(MIMEText(content, 'html'))
 
-        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
-        server.starttls()
-        server.login(SENDER_EMAIL, SENDER_PASSWORD)
-        server.sendmail(SENDER_EMAIL, RECEIVER_EMAILS, msg.as_string())
-        server.quit()
+        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+            server.starttls()
+            server.login(SENDER_EMAIL, SENDER_PASSWORD)
+            server.sendmail(SENDER_EMAIL, RECEIVER_EMAILS, msg.as_string())
+
     except Exception as e:
         print(f"❌ Email sending failed: {e}")
 
@@ -91,35 +93,40 @@ def send_thank_you_email(user_email, user_name):
     try:
         subject = "Thank You for Connecting with SkillCraft Solutions!"
 
-        # HTML content with logo and contact info
         content = f"""
         <html>
-        <body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
-            <div style="max-width: 600px; margin: auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <body style="font-family: Arial, sans-serif; background-color:#f8f9fa; padding:20px;">
+        <div style="max-width:600px;margin:auto;background:white;border-radius:10px;
+                    overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
 
-                <div style="background-color: #343a40; padding: 20px; text-align: center;">
-                    <img src="https://yourdomain.com/static/assets/images/skillcraft.jpg" alt="SkillCraft Solutions" style="max-width: 200px; height: auto;" />
-                </div>
-
-                <div style="padding: 30px;">
-                    <h2 style="color: #333;">Hello {user_name},</h2>
-                    <p style="font-size: 16px; color: #555;">
-                        Thank you for contacting <strong>SkillCraft Solutions</strong>. We’ve received your inquiry and our team will get back to you shortly.
-                    </p>
-                    <p style="font-size: 16px; color: #555;">
-                        If you have any further questions, feel free to reach out.
-                    </p>
-                    <p style="margin-top: 30px; font-size: 16px; color: #333;">
-                        Best regards,<br>
-                        <strong>SkillCraft Solutions Team</strong>
-                    </p>
-                </div>
-
-                <div style="background-color: #f1f1f1; padding: 20px; text-align: center; font-size: 14px; color: #666;">
-                    📞 +91-9158698218<br>
-                    📧 skillcrafttsolutions@gmail.com<br>
-                </div>
+            <div style="background:#343a40;padding:20px;text-align:center;">
+                <img src="https://yourdomain.com/static/assets/images/skillcraft.jpg"
+                     style="max-width:200px;">
             </div>
+
+            <div style="padding:30px;">
+                <h2>Hello {user_name},</h2>
+
+                <p>
+                Thank you for contacting <strong>SkillCraft Solutions</strong>.
+                We have received your enquiry and our team will contact you soon.
+                </p>
+
+                <p>
+                If you have any additional questions feel free to reply to this email.
+                </p>
+
+                <br>
+
+                <strong>SkillCraft Solutions Team</strong>
+            </div>
+
+            <div style="background:#f1f1f1;padding:20px;text-align:center;font-size:14px;">
+                📞 +91-9158698218 <br>
+                📧 skillcrafttsolutions@gmail.com
+            </div>
+
+        </div>
         </body>
         </html>
         """
@@ -130,35 +137,45 @@ def send_thank_you_email(user_email, user_name):
         msg['Subject'] = subject
         msg.attach(MIMEText(content, 'html'))
 
-        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
-        server.starttls()
-        server.login(sender_email_to_user, sender_password_to_user)
-        server.sendmail(sender_email_to_user, user_email, msg.as_string())
-        server.quit()
+        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+            server.starttls()
+            server.login(sender_email_to_user, sender_password_to_user)
+            server.sendmail(sender_email_to_user, user_email, msg.as_string())
+
     except Exception as e:
         print(f"❌ Failed to send thank-you email: {e}")
 
 @app.route('/inquire-basic', methods=['POST'])
 def save_name_email_only():
+
     name = request.form.get('name')
     email = request.form.get('email')
 
     if name and email:
-        enquiry = Enquiry(name=name, email=email)
+
+        enquiry = Enquiry(
+            name=name,
+            email=email
+        )
+
         db.session.add(enquiry)
         db.session.commit()
 
-        # Email content
         subject = "📩 New Basic Inquiry Received"
+
         content = f"""
-        <h2>New Basic Inquiry</h2>
+        <h2>New Inquiry</h2>
+
         <p><strong>Name:</strong> {name}</p>
         <p><strong>Email:</strong> {email}</p>
+        <p><strong>Date:</strong> {enquiry.date}</p>
         """
 
-        flash('✅ Inquiry saved successfully!', 'success')
-        send_thank_you_email(email, name)
         send_enquiry_email(subject, content)
+        send_thank_you_email(email, name)
+
+        flash('✅ Inquiry saved successfully!', 'success')
+
     else:
         flash('❌ Name and Email are required!', 'danger')
 
@@ -166,6 +183,7 @@ def save_name_email_only():
 
 @app.route('/inquire-full', methods=['POST'])
 def save_full_enquiry():
+
     name = request.form.get('name')
     number = request.form.get('number')
     email = request.form.get('email')
@@ -173,6 +191,7 @@ def save_full_enquiry():
     message = request.form.get('message')
 
     if name and email:
+
         enquiry = Enquiry(
             name=name,
             number=number,
@@ -180,23 +199,28 @@ def save_full_enquiry():
             subject=subject_text,
             message=message
         )
+
         db.session.add(enquiry)
         db.session.commit()
 
-        # Email content
         subject = "📩 New Full Inquiry Received"
+
         content = f"""
         <h2>New Full Inquiry</h2>
+
         <p><strong>Name:</strong> {name}</p>
         <p><strong>Number:</strong> {number}</p>
         <p><strong>Email:</strong> {email}</p>
         <p><strong>Subject:</strong> {subject_text}</p>
         <p><strong>Message:</strong> {message}</p>
+        <p><strong>Date:</strong> {enquiry.date}</p>
         """
 
-        flash('✅ Inquiry submitted successfully!', 'success')
         send_enquiry_email(subject, content)
         send_thank_you_email(email, name)
+
+        flash('✅ Inquiry submitted successfully!', 'success')
+
     else:
         flash('❌ Name and Email are required!', 'danger')
 
