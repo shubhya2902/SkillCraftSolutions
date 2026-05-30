@@ -11,7 +11,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>SkillCraft Solutions</title>
+    <title>{% block title %}SkillCraft Solutions | Engineering Projects & Research Support{% endblock %}</title>
+
+    <meta name="description"
+          content="{% block meta_description %}SkillCraft Solutions provides Final Year Engineering Projects, Thesis Research Support, IEEE Projects, Research Paper Guidance, Training and Academic Solutions.{% endblock %}">
+    
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical"
+          href="{% block canonical %}https://skillcraftsolutions.in{% endblock %}">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SkillCraft Solutions">
+    
+    <meta property="og:title"
+          content="{% block og_title %}SkillCraft Solutions{% endblock %}">
+    
+    <meta property="og:description"
+          content="{% block og_description %}Engineering Projects, Thesis Research Support and Academic Solutions.{% endblock %}">
+    
+    <meta property="og:url"
+          content="{% block og_url %}https://skillcraftsolutions.in{% endblock %}">
+    
+    <meta property="og:image"
+          content="https://skillcraftsolutions.in/static/assets/images/skillcraft.jpg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <meta name="twitter:title"
+          content="{% block twitter_title %}SkillCraft Solutions{% endblock %}">
+    
+    <meta name="twitter:description"
+          content="{% block twitter_description %}Engineering Projects, Thesis Research Support and Academic Solutions.{% endblock %}">
+    
+        
     <link rel="icon" href="/static/assets/images/skillcraft.jpg" type="image/png">
 
     <!-- Bootstrap core CSS -->
