@@ -49,6 +49,10 @@ from flask import send_from_directory
 def google_verification():
     return send_from_directory('.', 'google489be291c74d0570.html')
 
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml')
+
 @app.route('/')
 def home():
     return render_template('index.html')
