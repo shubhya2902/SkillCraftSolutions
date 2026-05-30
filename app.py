@@ -42,6 +42,13 @@ class Enquiry(db.Model):
 
 
 # Routes
+
+from flask import send_from_directory
+
+@app.route('/google489be291c74d0570.html')
+def google_verification():
+    return send_from_directory('.', 'google489be291c74d0570.html')
+
 @app.route('/')
 def home():
     return render_template('index.html')
