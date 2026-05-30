@@ -68,9 +68,32 @@ def base():
 def technologies():
     return render_template('portfolio.html')
 
+# Email Sending
+import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+# Configuration
+SMTP_SERVER = 'smtp.gmail.com'
+SMTP_PORT = 587
+
+# Admin Email
+SENDER_EMAIL = os.environ.get('SENDER_EMAIL')
+SENDER_PASSWORD = os.environ.get('SENDER_PASSWORD')
+RECEIVER_EMAILS = os.environ.get('RECEIVER_EMAILS')
+
+# User Email
+sender_email_to_user = os.environ.get('SENDER_EMAIL_TO_USER')
+sender_password_to_user = os.environ.get('SENDER_PASSWORD_TO_USER')
+
 
 def send_enquiry_email(subject, content):
     try:
+        print("========== ADMIN EMAIL DEBUG ==========")
+        print("SENDER_EMAIL:", SENDER_EMAIL)
+        print("RECEIVER_EMAILS:", RECEIVER_EMAILS)
+
         msg = MIMEMultipart()
         msg['From'] = SENDER_EMAIL
         msg['To'] = RECEIVER_EMAILS
@@ -78,16 +101,29 @@ def send_enquiry_email(subject, content):
 
         msg.attach(MIMEText(content, 'html'))
 
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=20) as server:
             server.starttls()
             server.login(SENDER_EMAIL, SENDER_PASSWORD)
-            server.sendmail(SENDER_EMAIL, RECEIVER_EMAILS, msg.as_string())
+
+            server.sendmail(
+                SENDER_EMAIL,
+                RECEIVER_EMAILS,
+                msg.as_string()
+            )
+
+        print("✅ Admin email sent successfully")
 
     except Exception as e:
         print(f"❌ Email sending failed: {e}")
 
+
 def send_thank_you_email(user_email, user_name):
     try:
+
+        print("========== USER EMAIL DEBUG ==========")
+        print("sender_email_to_user:", sender_email_to_user)
+        print("user_email:", user_email)
+
         subject = "Thank You for Connecting with SkillCraft Solutions!"
 
         content = f"""
@@ -97,7 +133,7 @@ def send_thank_you_email(user_email, user_name):
                     overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
 
             <div style="background:#343a40;padding:20px;text-align:center;">
-                <img src="https://yourdomain.com/static/assets/images/skillcraft.jpg"
+                <img src="https://skillcraftsolutions.in/static/assets/images/skillcraft.jpg"
                      style="max-width:200px;">
             </div>
 
@@ -132,15 +168,27 @@ def send_thank_you_email(user_email, user_name):
         msg['From'] = sender_email_to_user
         msg['To'] = user_email
         msg['Subject'] = subject
+
         msg.attach(MIMEText(content, 'html'))
 
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=20) as server:
             server.starttls()
-            server.login(sender_email_to_user, sender_password_to_user)
-            server.sendmail(sender_email_to_user, user_email, msg.as_string())
+            server.login(
+                sender_email_to_user,
+                sender_password_to_user
+            )
+
+            server.sendmail(
+                sender_email_to_user,
+                user_email,
+                msg.as_string()
+            )
+
+        print("✅ Thank-you email sent successfully")
 
     except Exception as e:
         print(f"❌ Failed to send thank-you email: {e}")
+
 
 @app.route('/inquire-basic', methods=['POST'])
 def save_name_email_only():
@@ -168,8 +216,15 @@ def save_name_email_only():
         <p><strong>Date:</strong> {enquiry.date}</p>
         """
 
-        send_enquiry_email(subject, content)
-        send_thank_you_email(email, name)
+        try:
+            send_enquiry_email(subject, content)
+        except Exception as e:
+            print("Admin Email Error:", e)
+
+        try:
+            send_thank_you_email(email, name)
+        except Exception as e:
+            print("User Email Error:", e)
 
         flash('✅ Inquiry saved successfully!', 'success')
 
@@ -177,6 +232,7 @@ def save_name_email_only():
         flash('❌ Name and Email are required!', 'danger')
 
     return redirect('/')
+
 
 @app.route('/inquire-full', methods=['POST'])
 def save_full_enquiry():
@@ -213,8 +269,15 @@ def save_full_enquiry():
         <p><strong>Date:</strong> {enquiry.date}</p>
         """
 
-        send_enquiry_email(subject, content)
-        send_thank_you_email(email, name)
+        try:
+            send_enquiry_email(subject, content)
+        except Exception as e:
+            print("Admin Email Error:", e)
+
+        try:
+            send_thank_you_email(email, name)
+        except Exception as e:
+            print("User Email Error:", e)
 
         flash('✅ Inquiry submitted successfully!', 'success')
 
@@ -222,6 +285,7 @@ def save_full_enquiry():
         flash('❌ Name and Email are required!', 'danger')
 
     return redirect('/')
+
 
 if __name__ == '__main__':
     with app.app_context():
