@@ -73,7 +73,7 @@ def send_enquiry_email(subject, content):
     try:
         msg = MIMEMultipart()
         msg['From'] = SENDER_EMAIL
-        msg['To'] = ', '.join(RECEIVER_EMAILS)
+        msg['To'] = RECEIVER_EMAILS
         msg['Subject'] = subject
 
         msg.attach(MIMEText(content, 'html'))
