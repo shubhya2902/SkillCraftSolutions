@@ -1,7 +1,11 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
+
 import os
+import smtplib
 from datetime import datetime
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__)
 app.secret_key = 'SkillCraft@2025'
@@ -13,9 +17,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Email Sending
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
 # Configuration (you can also move this to a config file)
 SMTP_SERVER = 'smtp.gmail.com'
@@ -42,8 +43,6 @@ class Enquiry(db.Model):
 
 
 # Routes
-
-from flask import send_from_directory
 
 @app.route('/google489be291c74d0570.html')
 def google_verification():
@@ -83,11 +82,7 @@ def base():
 def technologies():
     return render_template('portfolio.html')
 
-# Email Sending
-import os
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+
 
 # Configuration
 SMTP_SERVER = 'smtp.gmail.com'
