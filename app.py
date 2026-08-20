@@ -2,10 +2,8 @@ from flask import Flask, render_template, request, redirect, flash, send_from_di
 from flask_sqlalchemy import SQLAlchemy
 
 import os
-import smtplib
 from datetime import datetime
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import resend
 
 app = Flask(__name__)
 app.secret_key = 'SkillCraft@2025'
@@ -19,17 +17,13 @@ db = SQLAlchemy(app)
 # Email Sending
 
 # Configuration (you can also move this to a config file)
-SMTP_SERVER = 'smtp.gmail.com'
-SMTP_PORT = 587
+RESEND_API_KEY = os.environ.get('RESEND_API_KEY')
+resend.api_key = RESEND_API_KEY
 
-# to our email
-SENDER_EMAIL = os.environ.get('SENDER_EMAIL')
-SENDER_PASSWORD = os.environ.get('SENDER_PASSWORD')
-RECEIVER_EMAILS = os.environ.get('RECEIVER_EMAILS')
-
-# to user
-sender_email_to_user = os.environ.get('SENDER_EMAIL_TO_USER')
-sender_password_to_user = os.environ.get('SENDER_PASSWORD_TO_USER')
+SENDER_EMAIL = os.environ.get(
+    'SENDER_EMAIL',
+    'noreply@skillcraftsolutions.in'
+)
 
 # Model for Enquiry
 class Enquiry(db.Model):
@@ -82,63 +76,14 @@ def base():
 def technologies():
     return render_template('portfolio.html')
 
-
-
-# Configuration
-SMTP_SERVER = 'smtp.gmail.com'
-SMTP_PORT = 587
-
-# Admin Email
-SENDER_EMAIL = os.environ.get('SENDER_EMAIL')
-SENDER_PASSWORD = os.environ.get('SENDER_PASSWORD')
-RECEIVER_EMAILS = os.environ.get('RECEIVER_EMAILS')
-
-# User Email
-sender_email_to_user = os.environ.get('SENDER_EMAIL_TO_USER')
-sender_password_to_user = os.environ.get('SENDER_PASSWORD_TO_USER')
-
-
-def send_enquiry_email(subject, content):
+def send_thank_you_email(user_email, user_name, number=None, subject_text=None, message=None):
     try:
-        print("========== ADMIN EMAIL DEBUG ==========")
-        print("SENDER_EMAIL:", SENDER_EMAIL)
-        print("RECEIVER_EMAILS:", RECEIVER_EMAILS)
-
-        msg = MIMEMultipart()
-        msg['From'] = SENDER_EMAIL
-        msg['To'] = RECEIVER_EMAILS
-        msg['Subject'] = subject
-
-        msg.attach(MIMEText(content, 'html'))
-
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=20) as server:
-            server.starttls()
-            server.login(SENDER_EMAIL, SENDER_PASSWORD)
-
-            server.sendmail(
-                SENDER_EMAIL,
-                RECEIVER_EMAILS,
-                msg.as_string()
-            )
-
-        print("✅ Admin email sent successfully")
-
-    except Exception as e:
-        print(f"❌ Email sending failed: {e}")
-
-
-def send_thank_you_email(user_email, user_name):
-    try:
-
-        print("========== USER EMAIL DEBUG ==========")
-        print("sender_email_to_user:", sender_email_to_user)
-        print("user_email:", user_email)
-
         subject = "Thank You for Connecting with SkillCraft Solutions!"
 
         content = f"""
         <html>
         <body style="font-family: Arial, sans-serif; background-color:#f8f9fa; padding:20px;">
+
         <div style="max-width:600px;margin:auto;background:white;border-radius:10px;
                     overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
 
@@ -148,20 +93,38 @@ def send_thank_you_email(user_email, user_name):
             </div>
 
             <div style="padding:30px;">
+
                 <h2>Hello {user_name},</h2>
 
                 <p>
-                Thank you for contacting <strong>SkillCraft Solutions</strong>.
-                We have received your enquiry and our team will contact you soon.
+                    Thank you for contacting <strong>SkillCraft Solutions</strong>.
                 </p>
 
                 <p>
-                If you have any additional questions feel free to reply to this email.
+                    We have successfully received your enquiry.
+                    Our team will review your request and contact you soon.
+                </p>
+
+                <hr>
+
+                <h3>Your Enquiry Details</h3>
+
+                <p><strong>Name:</strong> {user_name}</p>
+                <p><strong>Email:</strong> {user_email}</p>
+                <p><strong>Mobile:</strong> {number or 'Not provided'}</p>
+                <p><strong>Subject:</strong> {subject_text or 'Not provided'}</p>
+                <p><strong>Message:</strong> {message or 'Not provided'}</p>
+
+                <br>
+
+                <p>
+                    If you have any additional questions, feel free to contact us.
                 </p>
 
                 <br>
 
                 <strong>SkillCraft Solutions Team</strong>
+
             </div>
 
             <div style="background:#f1f1f1;padding:20px;text-align:center;font-size:14px;">
@@ -170,35 +133,28 @@ def send_thank_you_email(user_email, user_name):
             </div>
 
         </div>
+
         </body>
         </html>
         """
 
-        msg = MIMEMultipart()
-        msg['From'] = sender_email_to_user
-        msg['To'] = user_email
-        msg['Subject'] = subject
+        params = {
+            "from": f"SkillCraft Solutions <{SENDER_EMAIL}>",
+            "to": [user_email],
+            "subject": subject,
+            "html": content
+        }
 
-        msg.attach(MIMEText(content, 'html'))
-
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=20) as server:
-            server.starttls()
-            server.login(
-                sender_email_to_user,
-                sender_password_to_user
-            )
-
-            server.sendmail(
-                sender_email_to_user,
-                user_email,
-                msg.as_string()
-            )
+        email = resend.Emails.send(params)
 
         print("✅ Thank-you email sent successfully")
+        print("Resend Email ID:", email)
+
+        return True
 
     except Exception as e:
         print(f"❌ Failed to send thank-you email: {e}")
-
+        return False
 
 @app.route('/inquire-basic', methods=['POST'])
 def save_name_email_only():
@@ -216,30 +172,16 @@ def save_name_email_only():
         db.session.add(enquiry)
         db.session.commit()
 
-        subject = "📩 New Basic Inquiry Received"
+        # Send confirmation email to user
+        send_thank_you_email(
+            user_email=email,
+            user_name=name
+        )
 
-        content = f"""
-        <h2>New Inquiry</h2>
-
-        <p><strong>Name:</strong> {name}</p>
-        <p><strong>Email:</strong> {email}</p>
-        <p><strong>Date:</strong> {enquiry.date}</p>
-        """
-
-        try:
-            send_enquiry_email(subject, content)
-        except Exception as e:
-            print("Admin Email Error:", e)
-
-        try:
-            send_thank_you_email(email, name)
-        except Exception as e:
-            print("User Email Error:", e)
-
-        flash('✅ Inquiry saved successfully!', 'success')
+        flash('Inquiry submitted successfully!', 'success')
 
     else:
-        flash('❌ Name and Email are required!', 'danger')
+        flash('Name and Email are required!', 'danger')
 
     return redirect('/')
 
@@ -266,33 +208,19 @@ def save_full_enquiry():
         db.session.add(enquiry)
         db.session.commit()
 
-        subject = "📩 New Full Inquiry Received"
+        # Send confirmation email to user
+        send_thank_you_email(
+            user_email=email,
+            user_name=name,
+            number=number,
+            subject_text=subject_text,
+            message=message
+        )
 
-        content = f"""
-        <h2>New Full Inquiry</h2>
-
-        <p><strong>Name:</strong> {name}</p>
-        <p><strong>Number:</strong> {number}</p>
-        <p><strong>Email:</strong> {email}</p>
-        <p><strong>Subject:</strong> {subject_text}</p>
-        <p><strong>Message:</strong> {message}</p>
-        <p><strong>Date:</strong> {enquiry.date}</p>
-        """
-
-        try:
-            send_enquiry_email(subject, content)
-        except Exception as e:
-            print("Admin Email Error:", e)
-
-        try:
-            send_thank_you_email(email, name)
-        except Exception as e:
-            print("User Email Error:", e)
-
-        flash('✅ Inquiry submitted successfully!', 'success')
+        flash('Inquiry submitted successfully!', 'success')
 
     else:
-        flash('❌ Name and Email are required!', 'danger')
+        flash('Name and Email are required!', 'danger')
 
     return redirect('/')
 
