@@ -88,7 +88,7 @@ def send_thank_you_email(user_email, user_name, number=None, subject_text=None, 
                     overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.1);">
 
             <div style="background:#343a40;padding:20px;text-align:center;">
-                <img src="https://skillcraftsolutions.in/static/assets/images/skillcraft.jpg"
+                <img src="https://skillcraftsolutions.in/static/assets/images/skillcraft_new_logo_2.png"
                      style="max-width:200px;">
             </div>
 
