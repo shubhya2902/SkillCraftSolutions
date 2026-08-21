@@ -22,7 +22,7 @@ resend.api_key = RESEND_API_KEY
 
 SENDER_EMAIL = os.environ.get(
     'SENDER_EMAIL',
-    'skillcrafttsolutions@gmail.com'
+    'contact@skillcraftsolutions.in'
 )
 
 # Model for Enquiry
