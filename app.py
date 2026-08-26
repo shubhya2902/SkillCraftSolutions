@@ -76,6 +76,7 @@ def base():
 def technologies():
     return render_template('portfolio.html')
 
+
 def send_thank_you_email(user_email, user_name, number=None, subject_text=None, message=None):
     try:
         subject = "Thank You for Connecting with SkillCraft Solutions!"
@@ -156,14 +157,23 @@ def send_thank_you_email(user_email, user_name, number=None, subject_text=None, 
         print(f"❌ Failed to send thank-you email: {e}")
         return False
 
+
 @app.route('/inquire-basic', methods=['POST'])
 def save_name_email_only():
+    # 1. Check the honeypot field
+    honeypot = request.form.get('website_url')
+    
+    # If the honeypot has ANY data, it's a bot. Silently drop the request.
+    if honeypot:
+        print("🤖 Bot detected on /inquire-basic. Request dropped.")
+        flash('Inquiry submitted successfully!', 'success') # Fake success
+        return redirect('/')
 
+    # 2. Normal processing for real humans
     name = request.form.get('name')
     email = request.form.get('email')
 
     if name and email:
-
         enquiry = Enquiry(
             name=name,
             email=email
@@ -179,7 +189,6 @@ def save_name_email_only():
         )
 
         flash('Inquiry submitted successfully!', 'success')
-
     else:
         flash('Name and Email are required!', 'danger')
 
@@ -188,7 +197,16 @@ def save_name_email_only():
 
 @app.route('/inquire-full', methods=['POST'])
 def save_full_enquiry():
+    # 1. Check the honeypot field
+    honeypot = request.form.get('website_url')
+    
+    # If the honeypot has ANY data, it's a bot. Silently drop the request.
+    if honeypot:
+        print("🤖 Bot detected on /inquire-full. Request dropped.")
+        flash('Inquiry submitted successfully!', 'success') # Fake success
+        return redirect('/')
 
+    # 2. Normal processing for real humans
     name = request.form.get('name')
     number = request.form.get('number')
     email = request.form.get('email')
@@ -196,7 +214,6 @@ def save_full_enquiry():
     message = request.form.get('message')
 
     if name and email:
-
         enquiry = Enquiry(
             name=name,
             number=number,
@@ -218,7 +235,6 @@ def save_full_enquiry():
         )
 
         flash('Inquiry submitted successfully!', 'success')
-
     else:
         flash('Name and Email are required!', 'danger')
 
